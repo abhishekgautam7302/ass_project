@@ -25,14 +25,13 @@ const Signup = () => {
   };
 
   return (
-    <div className="bg-gradient-to-r from-violet-600 to-indigo-600 w-full h-screen ">
-    <div className="py-36">
+    <div className="flex items-center justify-center h-screen bg-gradient-to-r from-violet-600 to-indigo-600">
     <form
       onSubmit={handleSignup}
-      className="bg-gradient-to-r from-indigo-400 to-cyan-400 p-6 rounded shadow-md w-96 mx-auto "
+      className="w-full max-w-md bg-gradient-to-r from-indigo-400 to-cyan-400 p-6 rounded shadow-md custom-shadow"
     >
       <h2 className="text-2xl font-bold mb-4 text-center">Signup</h2>
-      <div className="grid grid-cols-1 gap-4">
+      <div className="space-y-4">
         <input
           type="text"
           placeholder="First Name"
@@ -76,13 +75,13 @@ const Signup = () => {
       </div>
       <button
         type="submit"
-        className="w-full bg-green-500 text-white p-2 rounded mt-4 hover:bg-green-600"
+        className="w-full mt-4 bg-green-500 text-white py-2 rounded hover:bg-green-600"
       >
         Signup
       </button>
     </form>
-    </div>
-    </div>
+  </div>
+  
   );
 };
 

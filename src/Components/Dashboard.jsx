@@ -7,7 +7,7 @@ const Dashboard = ({ searchTerm }) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  const resultsPerPage = 10;
+  const resultsPerPage = 8;
 
   useEffect(() => {
     const fetchData = async () => {
@@ -33,7 +33,8 @@ const Dashboard = ({ searchTerm }) => {
 
   useEffect(() => {
     const filtered = data.filter((item) =>
-      (item.title || "No Title").includes(searchTerm)
+      (item.title ||item.author ||item.author || "No Title").includes(searchTerm)
+   
     );
     setFilteredData(filtered);
     setCurrentPage(1); // Reset to first page
@@ -57,25 +58,26 @@ const Dashboard = ({ searchTerm }) => {
   if (error) return <p>Error: {error}</p>;
 
   return (
-    <div className="p-4 mt-20 flex flex-col min-h-screen">
+    <div className="p-4 mt-20 flex flex-col min-h-screen ">
       <h1 className="text-xl font-bold mb-4">Search Results</h1>
 
       {/* Scrollable Content */}
-      <div className="flex-1 overflow-y-auto pb-20">
+      <div className="flex-1 overflow-y-auto  overflow-x-hidden pb-20">
         {currentData.length > 0 ? (
-          <ul className="space-y-2">
+          <ul className="space-y-3">
             {currentData.map((item) => (
               <li key={item.objectID} className="p-2 bg-gray-100 rounded shadow">
-                <a
+                 {item.title || "No Title"}
+                
+                <p className="text-sm text-gray-600">
+                  Author: {item.author || "Unknown"} | Comments: {item.num_comments} | <a
                   href={item.url || "#"}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-blue-600 hover:underline"
                 >
-                  {item.title || "No Title"}
-                </a>
-                <p className="text-sm text-gray-600">
-                  Author: {item.author || "Unknown"} | Comments: {item.num_comments}
+                 url: {item.url}
+                </a> 
                 </p>
               </li>
             ))}
